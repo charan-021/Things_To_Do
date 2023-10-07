@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Montserrat&family=Nova+Oval&family=Sacramento&family=Titillium+Web&display=swap" rel="stylesheet">
+    
+    <title>HOME</title>
+    
+    <!-- <link rel="stylesheet" href="{% static 'messages.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+  {% for message in messages %}
+  <div class="msg">
+      <div class="msg_div">
+          <div class="alert {{ message.tags }} msg_{{ forloop.counter }}">
+              <span class="msgclosebtn">&times;</span>  
+              <strong>Message: </strong> {{ message }}
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+
+    <div class="home" id="home">
+      <div class="header">
+          <div>
+              <a href="/home">
+                  <h2 class="logo">Things To-do (beta)</h2>
+              </a>
+          </div>
+          <div>
+              <nav>
+                  <ul>
+                      <li class="Welcome">Welcome, <span> {{ username }}. </span></li>
+                      <li><a href="/signout" class="siginout">SignOut</a></li>
+                      <!-- <li><a href="/settings"><ion-icon name="settings-outline"></ion-icon></a></li> -->
+                  </ul>
+              </nav>
+          </div>
+      </div>
+
+
+
+        <div class="body">
+          <div class="body_div">
+            <div class="one">
+              <div class="two">
+                <form method="post" action="{% url 'add' %}">
+                  {% csrf_token %}
+                  <div class="add">
+                    <div class="add_div">
+                      <div class="work_div">
+                        <input type="text" class="work_box" name="work" placeholder=" Write your task here." title="Write your task here" required>
+                      </div>
+                      <div class="add_button_div">
+                        <button type="submit"  class="add_button" name="submit" title="Add">Add</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                    
+                <hr>
+
+                <div class="tasks">
+                  <div class="task_boxs">
+                    {% for x in todo_data reversed%}
+                      <div class="task_box">
+                        <div class="a">
+                          <form method="post" action="/isco/{{ x.id}}/">
+                            {% csrf_token %}
+                            <input type="checkbox" class="task-checkbox" name="iscompleted" onchange="this.form.submit()"
+                            {% if x.isco %} checked {% endif %} class="todo-status-checkbox"
+                            title="{% if x.isco %} mark undone {% else %} mark as done {% endif %}">
+                          </form>
+                        </div>
+                        <div class="b">
+                          <p class="task {% if x.isco %} task-complete {% endif %}">{{ x.to_do }}</p>
+                        </div>
+                        <div class="c">
+                          <form method="post" action="{% url 'delete' x.id %}">
+                            {% csrf_token %}
+                            <button class="trash_button" type="submit" onclick="this.form.submit()">
+                              <ion-icon class="trash_icon" name="trash-outline" title="delete task"></ion-icon>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+            var close = document.getElementsByClassName("msgclosebtn");
+          var i;
+          for (i = 0; i < close.length; i++) {
+            close[i].onclick = function(){
+              var div = this.parentElement;
+              div.style.opacity = "0";
+              setTimeout(function(){ div.style.display = "none"; }, 421);
+            }
+          }
+    </script>
+    <script>
+      function preventBack(){window.history.forward()};
+      setTimeout("preventBack()",0);
+      window.onunload=function(){null;}
+    </script>
+</body>
+</html>

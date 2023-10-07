@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    
+    <link rel="stylesheet" href="{% static 'messages.css' %}">
+    <link rel="stylesheet" href="{% static 'login_signup/login.css' %}">
+</head>
+
+<body>
+  <div class="flex-container">
+    {% for message in messages %}
+    <div class="msg">
+        <div class="msg_div">
+            <div class="alert {{ message.tags }} msg_{{ forloop.counter }}">
+                <span class="msgclosebtn">&times;</span>  
+                <strong>Message: </strong> {{ message }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+    <div class="wrapper">
+        <div class="title-text">
+            <div class="title login">Login Form</div>
+            <div class="title signup">Signup Form</div>
+        </div>
+        
+        <div class="form-container">
+            <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <label for="login" id="login_label" class="slide login">Login</label>
+                <input type="radio" name="slide" id="signup" >
+                <label for="signup" id="signup_label" class="slide signup">Signup</label>
+                <div id="slider-tab" class="slider-tab"></div>
+            </div>
+
+
+            <!-- login -->
+            <div class="form-inner">
+                <form method="post" action="/login/" class="login">
+                  {% csrf_token %}
+                  <div class="field">
+                    <ion-icon id="username_icon" name="person-outline" class="username_icon"></ion-icon>
+                    <input name="username_or_email" type="text" placeholder="Username/Email Address" required>
+                  </div>
+
+                  <div class="field">
+                    <div>
+                      <ion-icon id="unlock1" onclick="unlock('lock1' , 'unlock1' , 'pass1')" name="eye-outline" class="unlock"></ion-icon>
+                    </div>
+                    <ion-icon id="lock1" onclick="lock('lock1','unlock1' , 'pass1')" name="eye-off-outline" class="lock"></ion-icon>
+                    <input name="password1" id="pass1" type="password" placeholder="Password" required id="myInput">
+                  </div>
+
+                  <div class="pass-link">
+                    <a href="/forget_password_email">Forgot password?</a>
+                  </div>
+
+                  <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Login">
+                  </div>
+                  
+                  <div class="signup-link">Don't have a account?
+                    <label for="signup" class="signup_now">Signup</label>
+                  </div>
+                </form>
+
+
+                <!-- signup -->
+                <form method="post" action="/signup/">
+                  {% csrf_token %}
+                  <div class="field">
+                    <ion-icon name="person-outline" class="username_icon"></ion-icon>
+                    <input name="signup_username" type="text" placeholder="Username" required>
+                  </div>
+                  <div class="field">
+                    <ion-icon name="mail-outline" class="mail"></ion-icon>
+                    <input name="signup_email" type="text" placeholder="Email Address" required>
+                  </div>
+                  <div class="field">
+                    <div>
+                      <ion-icon id="unlock2" onclick="unlock('lock2' , 'unlock2' , 'pass2')" name="eye-outline" class="unlock"></ion-icon>
+                    </div>
+                    <ion-icon id="lock2" onclick="lock('lock2','unlock2' , 'pass2')" name="eye-off-outline" class="lock"></ion-icon>
+                    <input name="signup_password1" id="pass2" type="password" placeholder="Password" required>
+                  </div>
+                  <div class="field">
+                    <div>
+                      <ion-icon id="unlock3" onclick="unlock('lock3' , 'unlock3' , 'pass3')" name="eye-outline" class="unlock"></ion-icon>
+                    </div>
+                    <ion-icon id="lock3" onclick="lock('lock3','unlock3' , 'pass3')" name="eye-off-outline" class="lock"></ion-icon>
+                    <input name="signup_password2" id="pass3" type="password" placeholder="Confirm password" required>
+                  </div>
+                  <label>
+                    <input type="checkbox" required><a class="terms_conditions" href="/terms_and_conditions"> I agree to the terms & conditions </a>
+                  </label>
+                  <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Signup">
+                  </div>
+                  <div class="signup-link">Already have an account?
+                    <label for="login" class="login_now">Login</label>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'login_signup/login.js' %}"></script>
+    <script>
+      var close = document.getElementsByClassName("msgclosebtn");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function(){
+          var div = this.parentElement;
+          div.style.opacity = "0";
+          setTimeout(function(){ div.style.display = "none"; }, 421);
+        }
+      }
+
+
+      document.querySelector("label.login").addEventListener("click", login);
+      document.querySelector("label.login_now").addEventListener("click", login);
+      function login() {
+        document.getElementById("slider-tab").style.left = "0%";
+        document.getElementById("signup_label").style.color = "black";
+        document.getElementById("login_label").style.color = "white";
+        document.getElementById("login_label").style.cursor = "default";
+        document.getElementById("signup_label").style.cursor = "pointer";
+        document.querySelector(".title-text .login").style.marginLeft = "0%";
+        document.querySelector("form.login").style.marginLeft = "0%";
+        document.getElementById("username_icon").style.visibility = "visible";
+        document.getElementById("lock1").style.visibility = "visible";
+        document.getElementById("unlock1").style.visibility = "visible";
+      }
+
+      document.querySelector("label.signup").addEventListener("click", signup);
+      document.querySelector("label.signup_now").addEventListener("click", signup);
+      function signup() {
+        document.getElementById("slider-tab").style.left = "50%";
+        document.getElementById("signup_label").style.color = "white";
+        document.getElementById("login_label").style.color = "black";
+        document.getElementById("signup_label").style.cursor = "default";
+        document.getElementById("login_label").style.cursor = "pointer";
+        document.querySelector(".title-text .login").style.marginLeft = "-50%";
+        document.querySelector("form.login").style.marginLeft = "-50%";
+        document.getElementById("username_icon").style.visibility = "hidden";
+        document.getElementById("lock1").style.visibility = "hidden";
+        document.getElementById("unlock1").style.visibility = "hidden";
+      }
+
+
+      </script>
+      <!-- <script>
+        function preventBack(){window.history.forward()};
+        setTimeout("preventBack()",0);
+        window.onunload=function(){null;}
+      </script> -->
+</body>
+</html
+

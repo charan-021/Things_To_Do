@@ -1,0 +1,79 @@
+-------------------------------------------- requirements.txt
+
+open cmd go to project location
+    py -m pip freeze > requirements.txt
+
+
+
+-------------------------------------------- build_files.sh
+
+#!/bin/bash
+
+echo "Installing required packages..."
+
+python3.9 -m pip install -r requirements.txt
+
+echo "Migrating database..."
+
+python3.9 manage.py makemigrations --noinput
+python3.9 manage.py migrate --noinput
+
+echo "Collecting static files..."
+
+python3.9 manage.py collectstatic --noinput
+
+
+
+-------------------------------------------- wsgi.py
+
+application = get_wsgi_application()
+
+app = application
+
+
+
+-------------------------------------------- settings.py (static)
+
+STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR / 'staticfiles_build'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+
+
+-------------------------------------------- vercel.json
+
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "[project_name]/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "[project_name]/wsgi.py"
+    }
+  ]
+}
+
+
+-------------------------------------------- 
+
+
