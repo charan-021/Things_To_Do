@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/* large screen  */
+@media (min-width: 1024px) {
+  :root{
+      font-size: 62.5%;
+  }
+}
+/* small screen  */
+@media (max-width: 1024px) {
+  :root{
+      font-size: 52.5%;
+  }
+}
+/* x-small screen */
+@media (max-width: 700px) {
+  :root{
+      font-size: 42.5%;
+  }
+}
+/* xl-small screen */
+@media (max-width: 450px) {
+  :root{
+      font-size: 32.5%;
+  }
+}
+
+.flex-container {
+  position: absolute;
+  top: 0;
+}
+.msg_div{
+    left: 0;
+    width: 99%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    margin: 0.5rem;
+    font-size: 1.3rem;
+    
+    /* background-color: black; */
+}
+.msg_1{
+  z-index: 17;
+  border: 0.1rem solid black;
+}
+.msg_2{
+  z-index: 16;
+  border: 0.1rem solid black;
+}
+.msg_3{
+  z-index: 15;
+  border: 0.1rem solid black;
+}
+.alert {
+  position: relative;
+  width: 55rem;
+  padding: 0.7rem;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.421s;
+  border-radius: 1rem;
+}
+
+.alert.success {background-color: #04AA6D;}
+.alert.warning {background-color: #ff9800;}
+.alert.error   {background-color: #ff0000;}
+
+.msgclosebtn {
+  color: white;
+  font-weight:normal;
+  float: right;
+  font-size: 2.8rem;
+  line-height: 2.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  padding-left: 1rem;
+}
+
+.msgclosebtn:hover {
+  color: black;
+}
