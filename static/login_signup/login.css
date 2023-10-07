@@ -274,8 +274,8 @@ form .btn input[type="submit"]{
    z-index: -1;
    position: absolute;
    color: black;
-   margin-top: 0.4rem;
-   margin-left: 18.3rem;
+   margin-top: 0.5rem;
+   margin-left: 30rem;
    cursor: pointer;
 }
 .signup-link .signup_now{
