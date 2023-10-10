@@ -364,7 +364,7 @@ def home(request):
      return redirect('login')
   myuser = User.objects.get(username = access_token_username)
   username = myuser.username
-  todo_data = To_do_list.objects.filter(uqid = access_token_username, dele = False).values()
+  todo_data = To_do_list.objects.filter(uqid = access_token_username, dele = False).order_by('id').values()
   context = {
      'todo_data': todo_data,
      'username': username,
