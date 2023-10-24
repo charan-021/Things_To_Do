@@ -74,7 +74,7 @@
                             {% csrf_token %}
                             <input type="checkbox" class="task-checkbox" name="iscompleted" onchange="this.form.submit()"
                             {% if x.isco %} checked {% endif %} class="todo-status-checkbox"
-                            title="{% if x.isco %} mark undone {% else %} mark as done {% endif %}">
+                            title="{% if x.isco %} mark as incompleted {% else %} mark as completed {% endif %}">
                           </form>
                         </div>
                         <div class="b">
