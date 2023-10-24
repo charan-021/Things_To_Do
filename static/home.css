@@ -5,6 +5,7 @@ font-family: 'Nova Oval', cursive;
 font-family: 'Sacramento', cursive;
 font-family: 'Titillium Web', sans-serif;
 */
+
 body{
   font-family: 'Titillium Web', sans-serif;
   background-color: #F9F7F7;
@@ -193,14 +194,20 @@ nav ul li a ion-icon{
   transition: all 0.4s ease;
   
 } */
-
+button.add_button {
+  font-family: 'Titillium Web', sans-serif;
+}
+.add_button{
+  background-color: #fb8e21;
+  color: white;
+}
 .add_button:hover{
   cursor: pointer;
   color: white;
-  background-color: #3F72AF;
+  background-color: #f57a00;
   transition: all 0.4s ease;
   border: 1px solid black;
-
+  font-family: 'Titillium Web', sans-serif;
 }
 hr{
   margin: 0em 5%;
@@ -411,14 +418,7 @@ hr{
   
     /* background-color: black; */
   }
-  .add_button:hover{
-    cursor: pointer;
-    color: white;
-    background-color: #3F72AF;
-    transition: all 0.4s ease;
-    border: 1px solid black;
-  
-  }
+
   hr{
     /* margin: 1.8rem; */
     width: 90%;
