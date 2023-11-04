@@ -87,29 +87,19 @@ WSGI_APPLICATION = 'Things_To_Do.wsgi.application'
 # }
 # DATABASES['default'] = dj_database_url.config()
 
-# railway
+
+# supabase
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'rJ7dPDyqNeloJZpqlHXY',
-        'HOST': 'containers-us-west-51.railway.app',
-        'PORT': '6082',
+        'HOST': 'db.nowqjscauyytrhwlslsb.supabase.co',
+        'PORT': '5432',
     }
 }
 
-# supabase
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': 'rJ7dPDyqNeloJZpqlHXY',
-#         'HOST': 'db.nowqjscauyytrhwlslsb.supabase.co',
-#         'PORT': '5432',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
