@@ -12,6 +12,40 @@
     
     <!-- <link rel="stylesheet" href="{% static 'messages.css' %}"> -->
     <link rel="stylesheet" href="{% static 'home.css' %}">
+    <style>
+/* large screen  */
+@media (min-width: 1024px) {
+  footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 0.7rem;
+    background-color: rgba(96, 173, 251, 0.421);
+  }
+}
+/* small screen  */
+@media (max-width: 1024px) {
+  footer{
+    position: fixed;
+    bottom: 0;
+    width: 100vmax;
+    height: 0.7rem;
+    background-color: rgba(96, 173, 251, 0.421);
+  }
+
+}
+footer p{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 0.5rem;
+}
+footer span{
+  color: navy;
+  font-size:120%;
+}
+</style>
 </head>
 <body>
   {% for message in messages %}
@@ -25,8 +59,8 @@
   </div>
   {% endfor %}
 
-    <div class="home" id="home">
-      <div class="header">
+      <div class="home" id="home">
+        <div class="header">
           <div>
               <a href="/home">
                   <h2 class="logo">Things To-do</h2>
@@ -41,7 +75,7 @@
                   </ul>
               </nav>
           </div>
-      </div>
+        </div>
 
 
 
@@ -96,8 +130,10 @@
             </div>
           </div>
         </div>
-
-
+      </div>
+      <footer>
+          <p>© Website design, animation and code by Charan<span>.</span></p> 
+      </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
