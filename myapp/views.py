@@ -344,7 +344,7 @@ def new_password(request,uidb64,token):
 #-------------------------------------------- SIGNOUT
 def signout(request):
    logout(request)
-   messages.success(request, "logged out syccessfully")
+   messages.success(request, "logged out successfully")
    response = redirect("login")
    response.delete_cookie(key="access_token")
    return response
@@ -407,7 +407,7 @@ def iscompleted(request, id):
      access_token=request.COOKIES["access_token"]
      access_token_username = decode_access_token(access_token)
   except (TypeError, ValueError, OverflowError, KeyError,):
-     messages.warning(request, "Session expaired, login again!")
+     messages.warning(request, "Session expired, login again!")
      return redirect('login')
   myuser = User.objects.get(username = access_token_username)
   myuser = To_do_list.objects.get(pk = id)
