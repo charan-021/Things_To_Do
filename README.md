@@ -14,7 +14,4 @@ Website Link: https://things-to-do-git-main-charans-projects.vercel.app/
 <img width="1680" height="838" alt="image" src="https://github.com/user-attachments/assets/15443e46-b7cc-4271-9438-490c205674e1" />
 
 
-<img width="1657" height="834" alt="image" src="https://github.com/user-attachments/assets/be3cb44a-7f86-4145-879f-5f69f9cc3ec7" />
-
-
 <img width="1660" height="839" alt="image" src="https://github.com/user-attachments/assets/10153075-973b-4336-a6bf-d5381eb0940a" />
