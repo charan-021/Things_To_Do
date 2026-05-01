@@ -1,4 +1,4 @@
-# Things_To_Do
+# things-to-do
 
 Hello everyone!
 
